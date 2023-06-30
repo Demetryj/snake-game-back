@@ -5,13 +5,6 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 const getUsers = async (req, res) => {
   const result = await User.find({}, "-createdAt -updatedAt");
 
-  if (result.length > 1) {
-    const recordHolders = [...result]
-      .sort((a, b) => b.points - a.points)
-      .slice(0, 5);
-    res.json(recordHolders);
-  }
-
   res.json(result);
 };
 
